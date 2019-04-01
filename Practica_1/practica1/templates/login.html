@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block acceso %}
+<h1>Acceso</h1>
+<form method ="post" action="{% url 'login' %}">
+
+    {% csrf_token %}
+    {{formulario.as_p}}
+    <input type="submit" value="Accesar">
+
+</form>
+
+{% endblock %}

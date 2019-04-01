@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block registro %}
+<h1>Registro</h1>
+<form action="{% url 'registro' %}" method ="post">
+
+    {% csrf_token %}
+    {{formulario1.as_p}}
+    {{formulario2.as_p}}
+    <input type="submit" value="Registrar">
+
+</form>
+
+{% endblock %}
