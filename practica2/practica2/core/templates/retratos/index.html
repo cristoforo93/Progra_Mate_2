@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Retratos</h2>
+    <a href="{% url 'subir_retrato' %}">Nuevo retrato</a> 
+    <br />
+    <br />
+    <table>
+        <tr><td><b>Nombre</b></td><td><b>Fecha de subida</b></td><td><b>Imagen</b></td><td></td><td></td></tr>
+        {% for retrato in retratos %}
+        <tr><td>{{ retrato.nombre }}</td><td>{{ retrato.uploaded_at }}</td>
+            <td><img src="{{ retrato.imagen.url }}" width="150px" height="auto" /></td><td></td>
+            <td><a href="{% url 'eliminar_retrato' id=retrato.id %}">Borrar</a></td></tr>
+        {% endfor %}
+    </table>
+    {% if user.is_superuser %}
+    <h2>Retratos de otros usuarios</h2>
+    <br />
+    <br />  
+    <table>
+        <tr><td><b>Usuario</b></td><td><b>Nombre</b></td><td><b>Fecha de subida</b></td><td></td><td></td></tr>
+        {% for retrato in retratos_otros %}
+        <tr><td>{{ retrato.user.username }}</td><td>{{ retrato.nombre }}</td><td>{{ retrato.uploaded_at }}</td>
+            <td><img src="{{ retrato.imagen.url }}" width="150px" height="auto" /></td><td></td>
+            <td><a href="{% url 'eliminar_retrato' id=retrato.id %}">Borrar</a></td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <br />
+{% endblock %}

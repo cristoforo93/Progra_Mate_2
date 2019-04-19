@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Archivos</h2>
+    <a href="{% url 'subir_archivo' %}">Nuevo archivo</a> 
+    <br />
+    <br />
+    <table>
+        <tr><td><b>Nombre</b></td><td><b>Fecha de subida</b></td><td></td><td></td><td></td></tr>
+        {% for archivo in archivos %}
+        <tr><td>{{ archivo.nombre }}</td><td>{{ archivo.uploaded_at }}</td>
+            <td><a href="{% url 'analizar_archivo' id=archivo.id %}">Análisis</a>
+            </td><td><a href="{% url 'editar_archivo' id=archivo.id %}">Editar</a></td>
+            <td><a href="{% url 'eliminar_archivo' id=archivo.id %}">Borrar</a></td></tr>
+        {% endfor %}
+    </table>
+    {% if user.is_superuser %}
+    <h2>Archivos de otros usuarios</h2>
+    <br />
+    <br />  
+    <table>
+        <tr><td><b>Usuario</b></td><td><b>Nombre</b></td><td><b>Fecha de subida</b></td><td></td><td></td></tr>
+        {% for archivo in archivos_otros %}
+        <tr><td>{{ archivo.user.username }}</td><td>{{ archivo.nombre }}</td><td>{{ archivo.uploaded_at }}</td>
+            <td><a href="{% url 'analizar_archivo' id=archivo.id %}">Análisis</a></td>
+            <td>Editar</td>
+            <td><a href="{% url 'eliminar_archivo' id=archivo.id %}">Borrar</a></td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <br />
+{% endblock %}

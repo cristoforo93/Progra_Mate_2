@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ archivo.nombre }}</h2>
+    <small>Subido el {{ archivo.uploaded_at }}</small> <a href="{% url 'editar_archivo' id=archivo.id %}" >Editar</a>
+    <br /><br />
+    <hr>
+    <table><tr>
+        <td width='50%'>
+            {% autoescape off %}
+            {{ contenido }}
+            {% endautoescape %}
+        </td>
+        {% comment %}
+        <td>
+            {% autoescape off %}
+            {{ original }}
+            {% endautoescape %}
+        </td>
+        {% endcomment %}
+    </tr></table>
+    </hr>
+    <hr>
+    <h2>Log: </h2>
+        {% autoescape off %}
+        {{ log }}
+        {% endautoescape %}
+    </hr>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Inicio</h2>
+    {% if user.is_authenticated %}
+        <p>Bienvenido <b>{{ user.username }}</b></p>
+        Ver perfil
+    
+    {% else %}
+        <p>Loguearse para continuar</p>
+        <p><a href="{% url 'login' %}">Click aqui para ingresar</a></p>
+    {% endif %}
+    <br />
+    <p><strong>Total users registered: {{ count }}</strong></p>
+{% endblock %}

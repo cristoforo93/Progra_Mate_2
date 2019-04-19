@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Editar archivo {{ archivo.nombre }}</h2>
+    <small>Subido el {{ archivo.uploaded_at }}</small>
+    <br /><br />
+    <hr>
+    <form method="post" url="{% url 'editar_archivo' id=archivo.id %}">
+        {% csrf_token %}
+        <button type="submit">Guardar</button>  <br />
+        <textarea name="contenido" id="contenido" rows="35" cols="150">{{ contenido }}</textarea>  
+    </form>
+
+    
+    
+
+{% endblock %}

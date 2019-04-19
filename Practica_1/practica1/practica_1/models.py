@@ -20,7 +20,7 @@ class Profile(models.Model):
         return self.user.username
 
 class Document(models.Model):
-    name_file = models.CharField(max_length=100, default='')
+    name_file = models.CharField(max_length=100, default='',primary_key=True)
     document = models.FileField(upload_to='documents/')
 
 
